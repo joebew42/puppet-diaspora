@@ -9,10 +9,6 @@ class diaspora::ruby (
   class { 'rvm':
     version => $rvm_version
   }->
-  file { '/etc/rvmrc':
-    content => "umask u=rwx,g=rwx,o=rx\nrvm_trust_rvmrcs_flag=1\n",
-    require => Class['rvm']
-  }->
   rvm_system_ruby { $ruby_version:
     ensure      => 'present',
     default_use => true
