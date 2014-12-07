@@ -14,7 +14,7 @@ class diaspora::ruby (
     default_use => true
   }->
   rvm_gem { "$ruby_version/puppet":
-    ensure  => '3.1.1',
+    ensure  => '3.5.0',
   }->
   rvm_gemset { "$ruby_version@$gemset":
     ensure  => present,
