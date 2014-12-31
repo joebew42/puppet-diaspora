@@ -1,18 +1,24 @@
 class diaspora (
-  $hostname         = 'development.diaspora.local',
-  $environment      = 'development',
-  $rvm_version      = '1.25.14',
-  $ruby_version     = '2.0.0',
-  $app_directory    = '/home/diaspora',
-  $user             = 'diaspora',
-  $group            = 'diaspora',
-  $db_provider      = 'mysql',
-  $db_host          = 'localhost',
-  $db_port          = '3306',
-  $db_name          = 'diaspora_development',
-  $db_username      = 'diaspora',
-  $db_password      = 'diaspora',
-  $db_root_password = 'diaspora_root',
+  $hostname            = 'development.diaspora.local',
+  $environment         = 'development',
+  $rvm_version         = '1.26.3',
+  $ruby_version        = '2.1.5',
+  $app_directory       = '/home/diaspora',
+  $user                = 'diaspora',
+  $group               = 'diaspora',
+  $db_provider         = 'mysql',
+  $db_host             = 'localhost',
+  $db_port             = '3306',
+  $db_name             = 'diaspora_development',
+  $db_username         = 'diaspora',
+  $db_password         = 'diaspora',
+  $db_root_password    = 'diaspora_root',
+  $unicorn_worker      = 4,
+  $sidekiq_concurrency = 5,
+  $sidekiq_retry       = 10,
+  $sidekiq_namespace   = 'diaspora',
+  $foreman_web         = 1,
+  $foreman_sidekiq     = 1,
 ) {
 
   class { 'diaspora::dependencies':
@@ -51,6 +57,21 @@ class diaspora (
 
     "${app_directory}/shared/config/diaspora.yml":
       content => template('diaspora/diaspora.yml.erb'),
+      owner   => $user,
+      group   => $group;
+
+    "${app_directory}/shared/Procfile":
+      source  => "puppet:///modules/diaspora/Procfile",
+      owner   => $user,
+      group   => $group;
+
+    "${app_directory}/shared/.foreman":
+      content => template('diaspora/foreman.erb'),
+      owner   => $user,
+      group   => $group;
+
+    "${app_directory}/shared/env":
+      content => template('diaspora/env.erb'),
       owner   => $user,
       group   => $group;
   }

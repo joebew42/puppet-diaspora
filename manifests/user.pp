@@ -13,6 +13,10 @@ class diaspora::user (
     shell    => '/bin/bash',
     home     => $home,
   }->
+  file_line { 'sudo_rule':
+    path => '/etc/sudoers',
+    line => "$user ALL=(ALL) NOPASSWD: ALL",
+  }->
   file { [$home,
           "$home/.ssh",
           "$home/shared",
