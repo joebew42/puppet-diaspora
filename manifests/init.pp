@@ -1,6 +1,7 @@
 class diaspora (
   $hostname            = 'development.diaspora.local',
   $environment         = 'development',
+  $rvm_key_server      = 'pgp.mit.edu',
   $rvm_version         = '1.26.3',
   $ruby_version        = '2.1.5',
   $app_directory       = '/home/diaspora',
@@ -30,9 +31,10 @@ class diaspora (
     group => $group
   }->
   class { 'diaspora::ruby':
-    system_user  => $user,
-    rvm_version  => $rvm_version,
-    ruby_version => $ruby_version
+    system_user    => $user,
+    rvm_key_server => $rvm_key_server,
+    rvm_version    => $rvm_version,
+    ruby_version   => $ruby_version
   }->
   class { 'diaspora::database':
     environment      => $environment,
