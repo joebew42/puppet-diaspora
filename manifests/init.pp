@@ -17,13 +17,10 @@ class diaspora (
   $unicorn_worker      = 4,
   $sidekiq_concurrency = 5,
   $sidekiq_retry       = 10,
-  $sidekiq_namespace   = 'diaspora',
-  $foreman_web         = 1,
-  $foreman_sidekiq     = 1,
+  $sidekiq_namespace   = 'diaspora'
 ) {
 
   class { 'diaspora::dependencies':
-    db_provider => $db_provider
   }->
   class { 'diaspora::user':
     home  => $app_directory,
@@ -62,13 +59,8 @@ class diaspora (
       owner   => $user,
       group   => $group;
 
-    "${app_directory}/shared/Procfile":
-      source  => "puppet:///modules/diaspora/Procfile",
-      owner   => $user,
-      group   => $group;
-
-    "${app_directory}/shared/.foreman":
-      content => template('diaspora/foreman.erb'),
+    "${app_directory}/shared/config/eye.rb":
+      source  => "puppet:///modules/diaspora/eye.rb",
       owner   => $user,
       group   => $group;
 

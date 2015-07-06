@@ -1,4 +1,4 @@
-class diaspora::database::db_postgres (
+class diaspora::database::db_postgresql (
   $environment      = 'development',
   $db_host          = 'localhost',
   $db_port          = '5432',

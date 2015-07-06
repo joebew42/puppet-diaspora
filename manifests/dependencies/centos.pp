@@ -1,6 +1,4 @@
-class diaspora::dependencies::centos (
-  $db_provider = 'mysql'
-) {
+class diaspora::dependencies::centos () {
 
   if ! defined(Package['tar'])                  { package { 'tar':                ensure => present } }
   if ! defined(Package['automake'])             { package { 'automake':           ensure => present } }
@@ -10,12 +8,7 @@ class diaspora::dependencies::centos (
   if ! defined(Package['tcl'])                  { package { 'tcl':                ensure => present } }
   if ! defined(Package['redis'])                { package { 'redis':              ensure => present } }
   if ! defined(Package['npm'])                  { package { 'npm':                ensure => present } }
+  if ! defined(Package['mysql-devel'])          { package { 'mysql-devel':        ensure => present } }
+  if ! defined(Package['postgresql-devel'])     { package { 'postgresql-devel':   ensure => present } }
 
-  if $db_provider == 'mysql' {
-    if ! defined(Package['mysql-devel'])        { package { 'mysql-devel':        ensure => present } }
-  }
-
-  if $db_provider == 'postgres' {
-    if ! defined(Package['postgresql-devel'])   { package { 'postgresql-devel':   ensure => present } }
-  }
 }
