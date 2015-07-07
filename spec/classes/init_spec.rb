@@ -2,13 +2,11 @@ require 'spec_helper'
 
 describe 'diaspora' do
 
-  let :facts do
-    {
-      concat_basedir: '/foo'
-    }
-  end
+  let(:facts) {{ concat_basedir: '/foo' }}
 
   context 'With default parameters' do
+    it { should compile }
+
     it { should contain_class('diaspora') }
     it { should contain_class('diaspora::dependencies') }
     it { should contain_class('diaspora::user') }

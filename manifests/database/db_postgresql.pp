@@ -29,7 +29,6 @@ class diaspora::database::db_postgresql (
     locale              => 'en_US.UTF-8'
   }->
   class { 'postgresql::server':
-    ensure           => 'present',
     listen_addresses => '*'
   }
 
