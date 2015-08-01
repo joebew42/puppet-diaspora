@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'diaspora::database' do
 
-  context 'With default paramaters' do
+  context 'With default parameters' do
     it { should contain_class('diaspora::database::db_mysql') }
   end
 
