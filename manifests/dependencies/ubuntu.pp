@@ -11,5 +11,6 @@ class diaspora::dependencies::ubuntu () {
   if ! defined(Package['libmagickwand-dev'])    { package { 'libmagickwand-dev':    ensure => present } }
   if ! defined(Package['libmysqlclient-dev'])   { package { 'libmysqlclient-dev':   ensure => present } }
   if ! defined(Package['libpq-dev'])            { package { 'libpq-dev':            ensure => present } }
+  if ! defined(Package['cmake'])                { package { 'cmake':                ensure => present } }
 
 }
