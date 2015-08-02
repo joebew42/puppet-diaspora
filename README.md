@@ -6,5 +6,6 @@ This puppet module can be used to provision diaspora*
 
 ```
 bundle
+librarian install --verbose
 bundle exec rake spec
 ```
