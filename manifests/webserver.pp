@@ -11,7 +11,7 @@ class diaspora::webserver (
     members => ['localhost:3000']
   }
 
-  if $environment == 'development' {
+  if ($environment == 'development') or ($environment == 'test') {
     nginx::resource::vhost { $hostname:
       ensure      => present,
       proxy       => 'http://diaspora_server',
