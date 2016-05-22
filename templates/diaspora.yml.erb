@@ -17,7 +17,7 @@ configuration: ## Section
     ## Require SSL (default=true).
     require_ssl: false
 
-    single_process_mode: false
+    single_process_mode: <%= @environment != "production" %>
 
     ## Sidekiq - background processing
     sidekiq: ## Section
