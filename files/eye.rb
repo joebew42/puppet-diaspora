@@ -16,7 +16,7 @@ Eye.application("diaspora") do
     daemonize true
     pid_file "tmp/pids/web.pid"
     stop_signals [:TERM, 10.seconds]
-    env "PORT" => ENV["PORT"]
+    env "PORT" => 3000
 
     monitor_children do
       stop_command "kill -QUIT {PID}"
